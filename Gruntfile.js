@@ -12,7 +12,7 @@ module.exports = function (grunt) {
                     compress: false
                 },
                 files: {
-                    "dist/css/admin.css": "src/less/admin.less"
+                    "dist/css/theme.css": "src/less/bootstrap.less"
                 }
             },
             production: {
@@ -20,7 +20,7 @@ module.exports = function (grunt) {
                     compress: true
                 },
                 files: {
-                    "dist/css/admin.min.css": "src/less/admin.less",
+                    "dist/css/theme.min.css": "src/less/bootstrap.less",
                 }
             }
         },
