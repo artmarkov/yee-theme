@@ -1,0 +1,24 @@
+{
+    "name": "yeesoft/yee-theme",
+    "description": "Yee CMS control panel theme based on Bootstrap 3",
+    "homepage": "https://www.yee-soft.com/",
+    "keywords": [
+        "yee",
+        "cms"
+    ],
+    "authors": [
+        {
+            "name": "Taras Makitra",
+            "email": "makitrataras@gmail.com"
+        }
+    ],
+    "license": "Apache-2.0",
+    "support": {
+        "issues": "https://github.com/yeesoft/yee-theme/issues/new",
+        "source": "https://github.com/yeesoft/yee-theme"
+    },
+    "minimum-stability": "stable",
+    "require": {
+        "twbs/bootstrap": "~3.3.0"
+    }
+}

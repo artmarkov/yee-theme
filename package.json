@@ -1,0 +1,19 @@
+{
+  "name": "yee-theme",
+  "version": "1.0.0",
+  "main": "dist/js/app.min.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/yeesoft/yee-themeE.git"
+  },
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "R2": "^1.4.3",
+    "grunt": "~0.4.5",
+    "grunt-contrib-cssmin": "^0.12.2",
+    "grunt-contrib-less": "^0.12.0",
+    "grunt-contrib-uglify": "^0.7.0",
+    "grunt-contrib-watch": "~0.6.1",
+    "grunt-image": "^1.0.5"
+  }
+}
