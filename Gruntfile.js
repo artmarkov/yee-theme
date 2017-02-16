@@ -3,8 +3,36 @@ module.exports = function (grunt) {
 
     grunt.initConfig({
         watch: {
-            files: ["src/less/*.less", "dist/js/app.js"],
-            tasks: ["less", "uglify"]
+            files: ["src/less/*.less", "src/js/*.js"],
+            tasks: ["concat", "less", "uglify"]
+        },
+        clean: {
+            dist: 'dist'
+        },
+        concat: {
+            bootstrap: {
+                src: [
+                    'vendor/twbs/bootstrap/js/transition.js',
+                    'vendor/twbs/bootstrap/js/alert.js',
+                    'vendor/twbs/bootstrap/js/button.js',
+                    //'vendor/twbs/bootstrap/js/carousel.js',
+                    'vendor/twbs/bootstrap/js/collapse.js',
+                    'vendor/twbs/bootstrap/js/dropdown.js',
+                    'vendor/twbs/bootstrap/js/modal.js',
+                    'vendor/twbs/bootstrap/js/tooltip.js',
+                    'vendor/twbs/bootstrap/js/popover.js',
+                    'vendor/twbs/bootstrap/js/scrollspy.js',
+                    'vendor/twbs/bootstrap/js/tab.js',
+                    'vendor/twbs/bootstrap/js/affix.js'
+                ],
+                dest: 'dist/js/bootstrap.js'
+            },
+            admin: {
+                src: [
+                    'src/js/admin.js'
+                ],
+                dest: 'dist/js/admin.js'
+            }
         },
         less: {
             development: {
@@ -29,9 +57,10 @@ module.exports = function (grunt) {
                 mangle: true,
                 preserveComments: 'some'
             },
-            my_target: {
+            javascript: {
                 files: {
-                    "dist/js/app.min.js": ['dist/js/admin.js']
+                    "dist/js/admin.min.js": ['dist/js/admin.js'],
+                    "dist/js/bootstrap.min.js": ['dist/js/bootstrap.js']
                 }
             }
         },
@@ -47,10 +76,13 @@ module.exports = function (grunt) {
         }
     });
 
+    grunt.loadNpmTasks('grunt-contrib-clean');
+    grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-image');
 
+    grunt.registerTask('run', ['clean', 'concat', 'less', 'uglify', 'image']);
     grunt.registerTask('default', ['watch']);
 };
