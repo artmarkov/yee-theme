@@ -3,22 +3,19 @@
 Yee CMS Theme
 =====
 
-This module allows you to easy integrate comments system into your Yii2 application.
-
-
 Installation
 ------------
 
 - Either run
 
 ```
-composer require --prefer-dist yeesoft/yee-theme "*"
+composer require --prefer-dist yeesoft/yee-theme "0.1.0"
 ```
 
 or add
 
 ```
-"yeesoft/yee-theme": "*"
+"yeesoft/yee-theme": "0.1.0"
 ```
 
 to the require section of your `composer.json` file.
