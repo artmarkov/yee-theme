@@ -5,6 +5,8 @@
 @bootstrap: "vendor/twbs/bootstrap/less";
 @adminlte: "vendor/almasaeed2010/adminlte/build";
 
+@import url('https://fonts.googleapis.com/css?family=Ubuntu:400,700&subset=cyrillic,cyrillic-ext,latin-ext');
+
 // Core variables and mixins
 @import "variables.less";
 @import "@{bootstrap}/mixins.less";
@@ -66,9 +68,9 @@
 @import "@{adminlte}/less/mixins.less";
 //COMPONENTS
 //-----------
-@import "@{adminlte}/less/header.less";
+@import "adminlte/header.less";
 @import "adminlte/sidebar.less";
-@import "@{adminlte}/less/sidebar-mini.less";
+@import "adminlte/sidebar-mini.less";
 //@import "@{adminlte}/less/control-sidebar.less";
 @import "@{adminlte}/less/dropdown.less";
 @import "@{adminlte}/less/forms.less";
