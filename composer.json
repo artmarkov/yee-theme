@@ -1,6 +1,6 @@
 {
     "name": "yeesoft/yee-theme",
-    "description": "Yee CMS control panel theme based on Bootstrap 3",
+    "description": "Yee CMS control panel theme based on AdminLTE 2 theme",
     "homepage": "https://www.yee-soft.com/",
     "keywords": [
         "yee",
@@ -18,7 +18,10 @@
         "source": "https://github.com/yeesoft/yee-theme"
     },
     "minimum-stability": "stable",
+    "require-dev": {
+        "almasaeed2010/AdminLTE": "~2.3.0"
+    },
     "require": {
-        "twbs/bootstrap": "~3.3.0"
+        "twbs/bootstrap": "~3.3.7"
     }
 }

@@ -27,6 +27,11 @@ module.exports = function (grunt) {
                 ],
                 dest: 'dist/js/bootstrap.js'
             },
+            adminlte: {
+                files: {
+                    'dist/js/app.min.js': ['vendor/almasaeed2010/adminlte/dist/js/app.js']
+                }
+            },
             admin: {
                 src: [
                     'src/js/admin.js'
@@ -40,7 +45,8 @@ module.exports = function (grunt) {
                     compress: false
                 },
                 files: {
-                    "dist/css/theme.css": "src/less/bootstrap.less"
+                    //"dist/css/bootstrap.css": "src/less/bootstrap.less",
+                    "dist/css/theme.css": "src/less/theme.less"
                 }
             },
             production: {
@@ -48,7 +54,8 @@ module.exports = function (grunt) {
                     compress: true
                 },
                 files: {
-                    "dist/css/theme.min.css": "src/less/bootstrap.less",
+                    //"dist/css/bootstrap.min.css": "src/less/bootstrap.less",
+                    "dist/css/theme.min.css": "src/less/theme.less",
                 }
             }
         },
