@@ -61,7 +61,7 @@
             > .treeview-menu {
               display: block !important;
               position: absolute;
-              width: @sidebar-width - 50;
+              width: @sidebar-width - 45;
               left: 50px;
             }
 
@@ -85,7 +85,7 @@
               }
             }
             > .treeview-menu {
-              top: 44px;
+              top: 42px;
               margin-left: 0;
             }
           }
@@ -94,8 +94,6 @@
 
       //Make the sidebar links, menus, labels, badges
       //and angle icons disappear
-      .main-sidebar .user-panel > .info,
-      .sidebar-form,
       .sidebar-menu > li > a > span,
       .sidebar-menu > li > .treeview-menu,
       .sidebar-menu > li > a > .pull-right,
@@ -123,7 +121,6 @@
 
 //A fix for text overflow while transitioning from sidebar mini to full sidebar
 .sidebar-menu,
-.main-sidebar .user-panel,
 .sidebar-menu > li.header {
   white-space: nowrap;
   overflow: hidden;
@@ -133,7 +130,6 @@
   overflow: visible;
 }
 
-.sidebar-form,
 .sidebar-menu > li.header {
   overflow: hidden;
   text-overflow: clip;

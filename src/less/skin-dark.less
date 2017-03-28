@@ -1,49 +1,59 @@
 .skin-dark {
-  //Navbar
-  .main-header {
-    .navbar {
-      .navbar-variant(darken(@header-color, 4%); #fff);
-      .sidebar-toggle {
-        color: #fff;
-        &:hover {
-          background-color: darken(@header-color, 5%);
-        }
-      }
-      @media (max-width: @screen-header-collapse) {
-        .dropdown-menu {
-          li {
-            &.divider {
-              background-color: rgba(255, 255, 255, 0.1);
+    *, *:active, *:focus {
+        outline: 0;
+        outline-color: transparent;
+    }
+    //Navbar
+    .main-header {
+        .navbar {
+            .navbar-variant(darken(@header-color, 4%); #fff);
+            .sidebar-toggle {
+                color: #fff;
+                &:hover {
+                    background-color: darken(@header-color, 5%);
+                }
             }
-            a {
-              color: #fff;
-              &:hover {
-                background: darken(@header-color, 5%);
-              }
+            @media (max-width: @screen-header-collapse) {
+                .dropdown-menu {
+                    li {
+                        &.divider {
+                            background-color: rgba(255, 255, 255, 0.1);
+                        }
+                        a {
+                            color: #fff;
+                            &:hover {
+                                background: darken(@header-color, 5%);
+                            }
+                        }
+                    }
+                }
             }
-          }
         }
-      }
-    }
-    //Logo
-    .logo {
-      .logo-variant(darken(@header-color, 4%));
+        //Logo
+        .logo {
+            .logo-variant(darken(@header-color, 4%));
+        }
+
+        li.user-header {
+            background-color: @header-color;
+        }
     }
 
-    li.user-header {
-      background-color: @header-color;
+    //Content Header
+    .content-header {
+        background: transparent;
     }
-  }
 
-  //Content Header
-  .content-header {
-    background: transparent;
-  }
+    .small-box {
+        h3 {
+            color: #fff;
+        }
+    }
 
-  //Create the sidebar skin
-  .skin-dark-sidebar(lighten(@header-color, 10%));
+    //Create the sidebar skin
+    .skin-dark-sidebar(lighten(@header-color, 10%));
 }
 
 .skin-blue.layout-top-nav .main-header > .logo {
-  .logo-variant(@header-color);
+    .logo-variant(@header-color);
 }
