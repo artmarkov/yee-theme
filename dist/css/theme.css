@@ -1,7 +1,4 @@
 @import url('https://fonts.googleapis.com/css?family=Ubuntu:400,700&subset=cyrillic,cyrillic-ext,latin-ext');
-/*!
- * YeeCMS Theme 0.2.0
- */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 html {
   font-family: sans-serif;
@@ -9223,7 +9220,7 @@ table.text-center th {
   }
 }
 .skin-dark .main-header .navbar {
-  background-color: #121821;
+  background-color: #202731;
 }
 .skin-dark .main-header .navbar .nav > li > a {
   color: #ffffff;
@@ -9249,7 +9246,7 @@ table.text-center th {
   color: #fff;
 }
 .skin-dark .main-header .navbar .sidebar-toggle:hover {
-  background-color: #10151d;
+  background-color: #1e252e;
 }
 @media (max-width: 767px) {
   .skin-dark .main-header .navbar .dropdown-menu li.divider {
@@ -9259,19 +9256,19 @@ table.text-center th {
     color: #fff;
   }
   .skin-dark .main-header .navbar .dropdown-menu li a:hover {
-    background: #10151d;
+    background: #1e252e;
   }
 }
 .skin-dark .main-header .logo {
-  background-color: #121821;
+  background-color: #202731;
   color: #ffffff;
   border-bottom: 0 solid transparent;
 }
 .skin-dark .main-header .logo:hover {
-  background-color: #10151d;
+  background-color: #1e252e;
 }
 .skin-dark .main-header li.user-header {
-  background-color: #19212e;
+  background-color: #28313d;
 }
 .skin-dark .content-header {
   background: transparent;
@@ -9279,15 +9276,15 @@ table.text-center th {
 .skin-dark .wrapper,
 .skin-dark .main-sidebar,
 .skin-dark .left-side {
-  background-color: #19212e;
+  background-color: #28313d;
 }
 .skin-dark .user-panel > .info,
 .skin-dark .user-panel > .info > a {
   color: #fff;
 }
 .skin-dark .sidebar-menu > li.header {
-  color: #3d5070;
-  background: #121821;
+  color: #50627b;
+  background: #202731;
 }
 .skin-dark .sidebar-menu > li > a {
   border-left: 3px solid transparent;
@@ -9295,21 +9292,21 @@ table.text-center th {
 .skin-dark .sidebar-menu > li:hover > a,
 .skin-dark .sidebar-menu > li.active > a {
   color: #ffffff;
-  background: #151c27;
-  border-left-color: #2b394f;
+  background: #242c37;
+  border-left-color: #3c4a5c;
 }
 .skin-dark .sidebar-menu > li > .treeview-menu {
   margin: 0 1px;
-  background: #222d3f;
+  background: #323d4c;
 }
 .skin-dark .sidebar a {
-  color: #a9b8d0;
+  color: #c1cad6;
 }
 .skin-dark .sidebar a:hover {
   text-decoration: none;
 }
 .skin-dark .treeview-menu > li > a {
-  color: #778fb5;
+  color: #93a3b8;
 }
 .skin-dark .treeview-menu > li.active > a,
 .skin-dark .treeview-menu > li > a:hover {
@@ -9317,13 +9314,13 @@ table.text-center th {
 }
 .skin-dark .sidebar-form {
   border-radius: 3px;
-  border: 1px solid #2b394f;
+  border: 1px solid #3c4a5c;
   margin: 10px 10px;
 }
 .skin-dark .sidebar-form input[type="text"],
 .skin-dark .sidebar-form .btn {
   box-shadow: none;
-  background-color: #2b394f;
+  background-color: #3c4a5c;
   border: 1px solid transparent;
   height: 35px;
 }
@@ -9350,10 +9347,10 @@ table.text-center th {
   border-bottom-left-radius: 0;
 }
 .skin-blue.layout-top-nav .main-header > .logo {
-  background-color: #19212e;
+  background-color: #28313d;
   color: #ffffff;
   border-bottom: 0 solid transparent;
 }
 .skin-blue.layout-top-nav .main-header > .logo:hover {
-  background-color: #171f2b;
+  background-color: #262f3a;
 }

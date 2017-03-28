@@ -2,11 +2,11 @@
   //Navbar
   .main-header {
     .navbar {
-      .navbar-variant(darken(@skin-header-color, 4%); #fff);
+      .navbar-variant(darken(@header-color, 4%); #fff);
       .sidebar-toggle {
         color: #fff;
         &:hover {
-          background-color: darken(@skin-header-color, 5%);
+          background-color: darken(@header-color, 5%);
         }
       }
       @media (max-width: @screen-header-collapse) {
@@ -18,7 +18,7 @@
             a {
               color: #fff;
               &:hover {
-                background: darken(@skin-header-color, 5%);
+                background: darken(@header-color, 5%);
               }
             }
           }
@@ -27,11 +27,11 @@
     }
     //Logo
     .logo {
-      .logo-variant(darken(@skin-header-color, 4%));
+      .logo-variant(darken(@header-color, 4%));
     }
 
     li.user-header {
-      background-color: @skin-header-color;
+      background-color: @header-color;
     }
   }
 
@@ -41,9 +41,9 @@
   }
 
   //Create the sidebar skin
-  .skin-dark-sidebar(lighten(@skin-header-color, 10%));
+  .skin-dark-sidebar(lighten(@header-color, 10%));
 }
 
 .skin-blue.layout-top-nav .main-header > .logo {
-  .logo-variant(@skin-header-color);
+  .logo-variant(@header-color);
 }
