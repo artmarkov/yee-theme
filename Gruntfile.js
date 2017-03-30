@@ -29,7 +29,7 @@ module.exports = function (grunt) {
             },
             adminlte: {
                 files: {
-                    'dist/js/app.min.js': ['vendor/almasaeed2010/adminlte/dist/js/app.js']
+                    'dist/js/app.js': ['vendor/almasaeed2010/adminlte/dist/js/app.js']
                 }
             },
             admin: {
@@ -67,7 +67,8 @@ module.exports = function (grunt) {
             javascript: {
                 files: {
                     "dist/js/admin.min.js": ['dist/js/admin.js'],
-                    "dist/js/bootstrap.min.js": ['dist/js/bootstrap.js']
+                    "dist/js/bootstrap.min.js": ['dist/js/bootstrap.js'],
+                    "dist/js/app.min.js": ['dist/js/app.js']
                 }
             }
         },
