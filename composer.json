@@ -25,9 +25,9 @@
     },
     "require-dev": {
         "almasaeed2010/AdminLTE": "~2.3.0",
-        "bower-asset/icheck": "~1.0.2"
+        "twbs/bootstrap": "~3.3.7"
     },
     "require": {
-        "twbs/bootstrap": "~3.3.7"
+        "bower-asset/icheck": "~1.0.2"
     }
 }

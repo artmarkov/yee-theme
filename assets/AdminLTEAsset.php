@@ -1,6 +1,6 @@
 <?php
 
-namespace yeesoft\assets;
+namespace yeesoft\theme\assets;
 
 use yii\web\AssetBundle;
 
@@ -19,7 +19,7 @@ class AdminLTEAsset extends AssetBundle
         $this->js = [
             //'js/bootstrap.min.js',
             'js/app.min.js',
-                //'js/admin.js',
+            'js/admin.min.js',
         ];
 
         $this->css = [
@@ -29,8 +29,10 @@ class AdminLTEAsset extends AssetBundle
 
         $this->depends = [
             'yii\web\YiiAsset',
-            'yii\bootstrap\BootstrapPluginAsset', 
+            'yii\bootstrap\BootstrapPluginAsset',
+            'yeesoft\theme\assets\CheckboxAsset',
         ];
+
 
         parent::init();
     }
