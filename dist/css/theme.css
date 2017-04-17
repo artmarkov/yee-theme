@@ -6830,84 +6830,6 @@ a:focus {
   background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
 }
 /*
- * Component: Small Box
- * --------------------
- */
-.small-box {
-  border-radius: 2px;
-  position: relative;
-  display: block;
-  margin-bottom: 20px;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
-}
-.small-box > .inner {
-  padding: 10px;
-}
-.small-box > .small-box-footer {
-  position: relative;
-  text-align: center;
-  padding: 3px 0;
-  color: #fff;
-  color: rgba(255, 255, 255, 0.8);
-  display: block;
-  z-index: 10;
-  background: rgba(0, 0, 0, 0.1);
-  text-decoration: none;
-}
-.small-box > .small-box-footer:hover {
-  color: #fff;
-  background: rgba(0, 0, 0, 0.15);
-}
-.small-box h3 {
-  font-size: 38px;
-  font-weight: bold;
-  margin: 0 0 10px 0;
-  white-space: nowrap;
-  padding: 0;
-}
-.small-box p {
-  font-size: 15px;
-}
-.small-box p > small {
-  display: block;
-  color: #f9f9f9;
-  font-size: 13px;
-  margin-top: 5px;
-}
-.small-box h3,
-.small-box p {
-  z-index: 5;
-}
-.small-box .icon {
-  -webkit-transition: all 0.3s linear;
-  -o-transition: all 0.3s linear;
-  transition: all 0.3s linear;
-  position: absolute;
-  top: -10px;
-  right: 10px;
-  z-index: 0;
-  font-size: 90px;
-  color: rgba(0, 0, 0, 0.15);
-}
-.small-box:hover {
-  text-decoration: none;
-  color: #f9f9f9;
-}
-.small-box:hover .icon {
-  font-size: 95px;
-}
-@media (max-width: 767px) {
-  .small-box {
-    text-align: center;
-  }
-  .small-box .icon {
-    display: none;
-  }
-  .small-box p {
-    font-size: 12px;
-  }
-}
-/*
  * Component: Box
  * --------------
  */
@@ -7658,7 +7580,8 @@ a:focus {
 .btn-action {
   border-radius: 50%;
   position: relative;
-  padding: 3px 5px;
+  padding: 3px 0;
+  min-width: 25px;
   margin: 0;
   text-align: center;
   color: #444;
@@ -8761,6 +8684,42 @@ table.text-center th {
   .table-responsive > .table tr td {
     white-space: normal !important;
   }
+}
+.layout-dropdown li a {
+  cursor: pointer;
+}
+.layout-dropdown .fa {
+  float: left;
+  margin-top: 2px;
+}
+.layout-icon {
+  display: inline-block;
+  float: left;
+  margin-right: 10px;
+  width: 18px;
+  height: 18px;
+  background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAH4AAAASAQMAAACn2/jqAAAABlBMVEX///93d3eqY6YFAAAAAXRSTlMAQObYZgAAACtJREFUeF61jKkRAAAIw9is+78s1LuCQgKmiYtIaEBLPsKJbZqtMI8l+KYF162mOXqjxLYAAAAASUVORK5CYII=');
+}
+.layout-icon-1 {
+  background-position: 0 0;
+}
+.layout-icon-2 {
+  background-position: -18px 0;
+}
+.layout-icon-3 {
+  background-position: -36px 0;
+}
+.layout-icon-4 {
+  background-position: -54px 0;
+}
+.layout-icon-5 {
+  background-position: -72px 0;
+}
+.layout-icon-6 {
+  background-position: -90px 0;
+}
+.layout-icon-7 {
+  background-position: -108px 0;
 }
 .skin-dark *,
 .skin-dark *:active,

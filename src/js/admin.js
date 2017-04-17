@@ -24,5 +24,13 @@ $(function () {
         zIndex: 999999
     });
     $(".connectedSortable .box-header, .connectedSortable .nav-tabs-custom").css("cursor", "move");
+    
+    $(".info-box-container").sortable({
+        connectWith: ".info-box-container",
+        handle: ".info-box",
+        forcePlaceholderSize: true,
+        zIndex: 999999
+    });
+    $(".info-box").css("cursor", "move");
 
 });
