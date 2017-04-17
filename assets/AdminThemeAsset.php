@@ -5,11 +5,11 @@ namespace yeesoft\theme\assets;
 use yii\web\AssetBundle;
 
 /**
- * Class YeeAsset
+ * Class YeeThemeAsset
  * 
- * @package yeesoft\core
+ * @package yeesoft\theme
  */
-class AdminLTEAsset extends AssetBundle
+class AdminThemeAsset extends AssetBundle
 {
 
     public function init()
@@ -29,12 +29,12 @@ class AdminLTEAsset extends AssetBundle
 
         $this->depends = [
             'yii\web\YiiAsset',
+            'yii\bootstrap\BootstrapAsset',
             'yii\bootstrap\BootstrapPluginAsset',
+            'yii\jui\JuiAsset',
             'yeesoft\theme\assets\CheckboxAsset',
         ];
-
-
-        parent::init();
+        
     }
 
 }

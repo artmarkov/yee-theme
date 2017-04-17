@@ -7655,6 +7655,26 @@ a:focus {
   font-size: 10px;
   font-weight: 400;
 }
+.btn-action {
+  border-radius: 50%;
+  position: relative;
+  padding: 3px 5px;
+  margin: 0;
+  text-align: center;
+  color: #444;
+  font-size: 12px;
+}
+.btn-action > .fa,
+.btn-action > .glyphicon,
+.btn-action > .ion {
+  font-size: 16px;
+  display: block;
+}
+.btn-action:hover {
+  color: #f4f4f4;
+  border: 1px solid #444;
+  background-color: #666;
+}
 /*
  * Component: Callout
  * ------------------
