@@ -1,5 +1,6 @@
 @bootstrap: "vendor/twbs/bootstrap/less";
 @adminlte: "vendor/almasaeed2010/adminlte/build";
+@switch: "vendor/bower-asset/bootstrap-switch/src/less/bootstrap3";
 
 @import url('https://fonts.googleapis.com/css?family=Ubuntu:400,700&subset=cyrillic,cyrillic-ext,latin-ext');
 
@@ -58,6 +59,10 @@
 @import "@{bootstrap}/responsive-utilities.less";
 
 
+//Bootstrap Switch
+//@import "@{switch}/bootstrap-switch.less";
+@import "bootstrap-switch.less";
+
 // AdminLTE 2 Core
 @import "adminlte/variables.less";
 @import "adminlte/core.less";
@@ -67,7 +72,7 @@
 @import "adminlte/header.less";
 @import "adminlte/sidebar.less";
 @import "adminlte/sidebar-mini.less";
-//@import "@{adminlte}/less/control-sidebar.less";
+@import "@{adminlte}/less/control-sidebar.less";
 @import "@{adminlte}/less/dropdown.less";
 @import "@{adminlte}/less/forms.less";
 @import "@{adminlte}/less/progress-bars.less";

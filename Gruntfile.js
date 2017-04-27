@@ -23,7 +23,8 @@ module.exports = function (grunt) {
                     'vendor/twbs/bootstrap/js/popover.js',
                     'vendor/twbs/bootstrap/js/scrollspy.js',
                     'vendor/twbs/bootstrap/js/tab.js',
-                    'vendor/twbs/bootstrap/js/affix.js'
+                    'vendor/twbs/bootstrap/js/affix.js',
+                    'vendor/bower-asset/bootstrap-switch/dist/js/bootstrap-switch.min.js',
                 ],
                 dest: 'dist/js/bootstrap.js'
             },
@@ -72,6 +73,18 @@ module.exports = function (grunt) {
                 }
             }
         },
+//        copy: {
+//            bootstrapSwitchCss: {
+//                files: [
+//                    {
+//                        expand: true,
+//                        cwd: 'vendor/bower-asset/bootstrap-switch/dist/css/bootstrap3/',
+//                        src: ['**'],
+//                        dest: 'dist/css/'
+//                    },
+//                ],
+//            },
+//        },
         image: {
             dynamic: {
                 files: [{
@@ -89,8 +102,9 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-image');
 
-    grunt.registerTask('run', ['clean', 'concat', 'less', 'uglify', 'image']);
+    grunt.registerTask('run', ['clean', 'concat', 'less', 'uglify', 'image']);//'copy', 
     grunt.registerTask('default', ['watch']);
 };
