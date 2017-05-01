@@ -20,7 +20,7 @@ class AdminThemeAsset extends AssetBundle
             //'js/bootstrap.min.js',
             //'js/bootstrap-switch.min.js',
             'js/app.min.js',
-            'js/admin.min.js',
+            //'js/admin.min.js',
         ];
 
         $this->css = [
@@ -33,7 +33,7 @@ class AdminThemeAsset extends AssetBundle
             'yii\bootstrap\BootstrapAsset',
             'yii\bootstrap\BootstrapPluginAsset',
             'yii\jui\JuiAsset',
-            'yeesoft\theme\assets\CheckboxAsset',
+            //'yeesoft\theme\assets\CheckboxAsset',
         ];
         
     }

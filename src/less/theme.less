@@ -1,6 +1,7 @@
 @bootstrap: "vendor/twbs/bootstrap/less";
 @adminlte: "vendor/almasaeed2010/adminlte/build";
 @switch: "vendor/bower-asset/bootstrap-switch/src/less/bootstrap3";
+@icheck: "vendor/bower-asset/icheck/skins";
 
 @import url('https://fonts.googleapis.com/css?family=Ubuntu:400,700&subset=cyrillic,cyrillic-ext,latin-ext');
 
@@ -21,9 +22,6 @@
 @import "@{bootstrap}/tables.less";
 @import "@{bootstrap}/forms.less";
 @import "@{bootstrap}/buttons.less";
-
-// Checkboxes and Radioboxes
-//@import "checkboxes.less";
 
 // Bootstrap Components
 @import "@{bootstrap}/component-animations.less";
@@ -62,6 +60,9 @@
 //Bootstrap Switch
 //@import "@{switch}/bootstrap-switch.less";
 @import "bootstrap-switch.less";
+
+// iCheck and Radio
+@import "checkboxes.less";
 
 // AdminLTE 2 Core
 @import "adminlte/variables.less";

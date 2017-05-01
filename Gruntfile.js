@@ -24,14 +24,18 @@ module.exports = function (grunt) {
                     'vendor/twbs/bootstrap/js/scrollspy.js',
                     'vendor/twbs/bootstrap/js/tab.js',
                     'vendor/twbs/bootstrap/js/affix.js',
-                    'vendor/bower-asset/bootstrap-switch/dist/js/bootstrap-switch.min.js',
+                    'vendor/bower-asset/bootstrap-switch/dist/js/bootstrap-switch.js',
+                    'vendor/bower-asset/icheck/icheck.js',
                 ],
                 dest: 'dist/js/bootstrap.js'
             },
             adminlte: {
-                files: {
-                    'dist/js/app.js': ['vendor/almasaeed2010/adminlte/dist/js/app.js']
-                }
+                src: [
+                    'src/js/config.js',
+                    'vendor/almasaeed2010/adminlte/dist/js/app.js',
+                    'src/js/app.js'
+                ],
+                dest: 'dist/js/app.js'
             },
             admin: {
                 src: [

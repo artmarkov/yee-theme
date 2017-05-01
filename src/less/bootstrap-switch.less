@@ -1,8 +1,9 @@
 @bootstrap-switch-base: bootstrap-switch;
 @bootstrap-switch-radius: 2px;
-@bootstrap-switch-label-padding-xs-horizontal: 0px;
-@bootstrap-switch-border-color: #1a2027;
-@bootstrap-switch-font-size-mini: 10px;
+@bootstrap-switch-mini-font-size: 10px;
+@bootstrap-switch-small-font-size: 12px;
+@bootstrap-switch-normal-font-size: 14px;
+@bootstrap-switch-large-font-size: 16px;
 
 .@{bootstrap-switch-base} {
     display: inline-block;
@@ -10,7 +11,7 @@
     cursor: pointer;
     border-radius: @bootstrap-switch-radius;
     border: 1px solid;
-    border-color: @bootstrap-switch-border-color;
+    border-color: @gray;
     position: relative;
     text-align: left;
     overflow: hidden;
@@ -21,9 +22,8 @@
     .transition(~"border-color ease-in-out .15s, box-shadow ease-in-out .15s");
 
     .@{bootstrap-switch-base}-container {
-        display: inline-block;
         top: 0;
-        border-radius: @bootstrap-switch-radius;
+        display: inline-block;
         .translate3d(0, 0, 0);
     }
 
@@ -34,9 +34,17 @@
         cursor: pointer;
         display: inline-block !important;
         height: 100%;
-        padding: @padding-base-vertical @padding-base-horizontal;
-        font-size: @font-size-base;
-        line-height: @line-height-computed;
+        font-size: @bootstrap-switch-normal-font-size;
+        line-height: @bootstrap-switch-normal-font-size + 5;
+    }
+
+    .@{bootstrap-switch-base}-handle-on,
+    .@{bootstrap-switch-base}-handle-off {
+        padding: 0px @padding-base-horizontal;
+    }
+
+    .@{bootstrap-switch-base}-label {
+        padding: 0px;
     }
 
     .@{bootstrap-switch-base}-handle-on,
@@ -70,7 +78,7 @@
         }
 
         &.@{bootstrap-switch-base}-default {
-            color: #000;
+            color: @gray-dark;
             background: @gray-lighter;
         }
     }
@@ -85,11 +93,11 @@
     }
 
     .@{bootstrap-switch-base}-handle-on {
-        .border-left-radius(@bootstrap-switch-radius - 1);
+
     }
 
     .@{bootstrap-switch-base}-handle-off {
-        .border-right-radius(@bootstrap-switch-radius - 1);
+
     }
 
     input[type='radio'],
@@ -107,17 +115,17 @@
         .@{bootstrap-switch-base}-handle-on,
         .@{bootstrap-switch-base}-handle-off,
         .@{bootstrap-switch-base}-label {
-            font-size: @bootstrap-switch-font-size-mini;
-            line-height: @line-height-small;
+            font-size: @bootstrap-switch-mini-font-size;
+            line-height: @bootstrap-switch-mini-font-size + 3;
         }
-        
+
         .@{bootstrap-switch-base}-handle-on,
         .@{bootstrap-switch-base}-handle-off {
-            padding: @padding-xs-vertical @padding-xs-horizontal;
+            padding: 0px @padding-xs-horizontal;
         }
-        
+
         .@{bootstrap-switch-base}-label {
-            padding: @padding-xs-vertical @bootstrap-switch-label-padding-xs-horizontal;
+            padding: 0px;
         }
     }
 
@@ -126,9 +134,17 @@
         .@{bootstrap-switch-base}-handle-on,
         .@{bootstrap-switch-base}-handle-off,
         .@{bootstrap-switch-base}-label {
-            padding: @padding-small-vertical @padding-small-horizontal;
-            font-size: @font-size-small;
-            line-height: @line-height-small;
+            font-size: @bootstrap-switch-small-font-size;
+            line-height: @bootstrap-switch-small-font-size + 5;
+        }
+
+        .@{bootstrap-switch-base}-handle-on,
+        .@{bootstrap-switch-base}-handle-off {
+            padding: 0px @padding-small-horizontal;
+        }
+
+        .@{bootstrap-switch-base}-label {
+            padding: 0px;
         }
     }
 
@@ -137,9 +153,17 @@
         .@{bootstrap-switch-base}-handle-on,
         .@{bootstrap-switch-base}-handle-off,
         .@{bootstrap-switch-base}-label {
-            padding: @padding-base-vertical @padding-large-horizontal;
-            font-size: @font-size-large;
-            line-height: @line-height-large;
+            font-size: @bootstrap-switch-large-font-size;
+            line-height: @bootstrap-switch-large-font-size + 5;
+        }
+
+        .@{bootstrap-switch-base}-handle-on,
+        .@{bootstrap-switch-base}-handle-off {
+            padding: 0px @padding-large-horizontal;
+        }
+
+        .@{bootstrap-switch-base}-label {
+            padding: 0px;
         }
     }
 
@@ -157,22 +181,17 @@
     }
 
     &.@{bootstrap-switch-base}-animate {
-
         .@{bootstrap-switch-base}-container {
             .transition(margin-left .5s);
         }
     }
 
     &.@{bootstrap-switch-base}-inverse {
-
         .@{bootstrap-switch-base}-handle-on {
-            .border-left-radius(0);
-            .border-right-radius(@bootstrap-switch-radius - 1);
-        }
 
+        }
         .@{bootstrap-switch-base}-handle-off {
-            .border-right-radius(0);
-            .border-left-radius(@bootstrap-switch-radius - 1);
+
         }
     }
 
@@ -183,18 +202,15 @@
 
     &.@{bootstrap-switch-base}-on,
     &.@{bootstrap-switch-base}-inverse.@{bootstrap-switch-base}-off {
-
         .@{bootstrap-switch-base}-label {
-            .border-right-radius(@bootstrap-switch-radius - 1);
+
         }
     }
 
     &.@{bootstrap-switch-base}-off,
     &.@{bootstrap-switch-base}-inverse.@{bootstrap-switch-base}-on {
-
-
         .@{bootstrap-switch-base}-label {
-            .border-left-radius(@bootstrap-switch-radius - 1);
+
         }
     }
 }
