@@ -180,6 +180,15 @@
         }
     }
 
+    &.@{bootstrap-switch-base}-disabled,
+    &.@{bootstrap-switch-base}-readonly {
+        .@{bootstrap-switch-base}-handle-on,
+        .@{bootstrap-switch-base}-handle-off {
+            cursor: not-allowed !important;
+        }
+
+    }
+
     &.@{bootstrap-switch-base}-animate {
         .@{bootstrap-switch-base}-container {
             .transition(margin-left .5s);

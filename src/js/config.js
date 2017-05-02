@@ -1,8 +1,8 @@
 var AdminLTEOptions = {
     boxWidgetOptions: {
         boxWidgetIcons: {
-            collapse: 'fa-chevron-down',
-            open: 'fa-chevron-up',
+            collapse: 'fa-minus',
+            open: 'fa-chevron-down',
             remove: 'fa-times'
         }
     },
