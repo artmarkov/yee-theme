@@ -19,7 +19,7 @@ class AdminThemeAsset extends AssetBundle
         $this->js = [
             //'js/bootstrap.min.js',
             //'js/bootstrap-switch.min.js',
-            'js/app.min.js',
+            'js/application.min.js',
             //'js/admin.min.js',
         ];
 

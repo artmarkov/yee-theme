@@ -10,6 +10,456 @@ var AdminLTEOptions = {
         enable: false
     }
 };
+var Notification = function ($) {
+    var settings = {
+        timeout: 3000,
+        hideDuration: 1000,
+        defaultIcon: '',
+        defaultTitle: 'Notification!',
+        notificationContainer: '.notification-container'
+    };
+
+    var getNotification = function (type, message, title, icon) {
+        var notificationClass;
+
+        if (typeof title === 'undefined')
+            title = settings.defaultTitle;
+
+        if (typeof icon === 'undefined')
+            icon = settings.defaultIcon;
+
+        switch (type) {
+            case 'success':
+                title = 'Success!';
+                icon = '<i class="icon fa fa-check"></i>';
+                notificationClass = 'callout callout-success';
+                break;
+            case 'danger':
+                title = 'Error!';
+                icon = '<i class="icon fa fa-ban"></i>';
+                notificationClass = 'callout callout-danger';
+                break;
+            case 'info':
+                title = 'Info!';
+                icon = '<i class="icon fa fa-info"></i>';
+                notificationClass = 'callout callout-info';
+                break;
+            case 'warning':
+                title = 'Warning!';
+                icon = '<i class="icon fa fa-warning"></i>';
+                notificationClass = 'callout callout-warning';
+                break;
+            case 'primary':
+                notificationClass = 'callout callout-primary';
+                break;
+            default:
+                notificationClass = 'callout callout-default';
+
+        }
+
+        return $('<div class="' + notificationClass + '"><h4>' + icon + ' ' + title + '</h4><p>' + message + '</p></div>');
+    };
+
+    var show = function (type, message, title, icon) {
+        var $notification = getNotification(type, message, title, icon);
+        $(settings.notificationContainer).append($notification);
+
+        setTimeout(function () {
+            $notification.fadeOut(settings.hideDuration);
+        }, settings.timeout);
+    };
+
+    return {
+        init: function () {
+            if (typeof NotificationSettings !== "undefined") {
+                $.extend(true, settings, NotificationSettings);
+            }
+        },
+        showSuccess: function (message) {
+            show('success', message);
+        },
+        showError: function (message) {
+            show('danger', message);
+        },
+        showWarning: function (message) {
+            show('warning', message);
+        },
+        showInfo: function (message) {
+            show('info', message);
+        },
+        showPrimary: function (message, title, icon) {
+            show('primary', message, title, icon);
+        },
+        showDefault: function (message, title, icon) {
+            show('default', message, title, icon);
+        }
+    };
+
+}(jQuery);
+
+jQuery(document).ready(function () {
+    Notification.init();
+});
+var Settings = function ($) {
+    var settings = {
+        settingGetUrl: '/admin/dashboard/default/get-setting',
+        settingSetUrl: '/admin/dashboard/default/set-setting'
+    };
+
+    /**
+     * Get a prestored setting
+     * 
+     * @param String name Name of of the setting
+     * @param Function callback
+     * @returns String The value of the setting | null
+     */
+    var get = function (name, callback) {
+        $.ajax({
+            url: settings.settingGetUrl,
+            data: {name: name},
+            type: 'POST',
+            dataType: 'json',
+            success: function (data, textStatus, jqXHR) {
+                if (data !== null && typeof data === 'object') {
+                    callback(data);
+                } else {
+                    Notification.showError('Unexpected response was received from the server!');
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                var error = jqXHR.responseJSON;
+                Notification.showError(error.status + ' ' + error.name + ': ' + error.message);
+            }
+        });
+    };
+
+    /**
+     * Store a new settings in the browser
+     *
+     * @param String name Name of the setting
+     * @param String value Value of the setting
+     * @returns void
+     */
+    var set = function (name, value) {
+        $.ajax({
+            url: settings.settingSetUrl,
+            data: {name: name, value: value},
+            type: 'POST',
+            dataType: 'json',
+            success: function (data, textStatus, jqXHR) {
+                if (data === null || typeof data !== 'object')
+                    Notification.showError('Unexpected response was received from the server!');
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                var error = jqXHR.responseJSON;
+                Notification.showError(error.status + ' ' + error.name + ': ' + error.message);
+            }
+        });
+    };
+
+    return {
+        init: function () {
+            if (typeof SettingsSettings !== "undefined") {
+                $.extend(true, settings, SettingsSettings);
+            }
+        },
+        get: function (name, callback) {
+            return get(name, callback);
+        },
+        set: function (name, value) {
+            set(name, value);
+        }
+    };
+}(jQuery);
+
+jQuery(document).ready(function () {
+    Settings.init();
+});
+var Modal = function ($) {
+    var settings = {
+
+    };
+
+    var getModal = function (message, title, ok, cancel) {
+        if (typeof title === "undefined") {
+            title = "Confirmation";
+        }
+
+        return '<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="confirm-modal-label">'
+                + '<div class="modal-dialog" role="document">'
+                + '<div class="modal-content">'
+                + '<div class="modal-header">'
+                + '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>'
+                + '<h4 class="modal-title" id="confirm-modal-label">' + title + '</h4>'
+                + '</div>'
+                + '<div class="modal-body">' + message + '</div>'
+                + '<div class="modal-footer">'
+                + '<button type="button" class="btn btn-default" data-action="cancel" data-dismiss="modal">Cancel</button>'
+                + '<button type="button" class="btn btn-primary" data-action="ok">Ok</button>'
+                + '</div>'
+                + '</div>'
+                + '</div>'
+                + '</div>';
+    };
+
+    var confirm = function (message, ok, cancel) {
+        $modal = $(getModal(message));
+        $('body').append($modal);
+
+        $modal.find('[data-action="ok"]').click(function () {
+            !ok || ok();
+        });
+
+        $modal.find('[data-action="cancel"]').click(function () {
+            !cancel || cancel();
+        });
+
+        $modal.modal('show');
+    };
+
+    var _init = function () {
+
+        yii.confirm = confirm;
+    };
+
+    return {
+        init: function () {
+            if (typeof ModalSettings !== "undefined") {
+                $.extend(true, settings, ModalSettings);
+            }
+
+            _init();
+        }
+    };
+
+}(jQuery);
+
+jQuery(document).ready(function () {
+    Modal.init();
+});
+var InfoBox = function ($) {
+    var settings = {
+        infoBoxGetUrl: '/admin/dashboard/default/get-info-box',
+        infoBoxContainer: '.info-box-container',
+        infoBoxSelector: '.info-box'
+    };
+
+    var getOrder = function () {
+        var infoBoxes = [];
+        $(settings.infoBoxContainer).find(settings.infoBoxSelector).each(function () {
+            infoBoxes.push($(this).data('id'));
+        });
+        return infoBoxes;
+    };
+
+    var saveOrder = function () {
+        Settings.set('dashboard.infoBoxes', getOrder());
+    };
+
+    var loadInfoBox = function (widgetId, callback) {
+        $.ajax({
+            url: settings.infoBoxGetUrl,
+            data: {widgetId: widgetId},
+            type: 'POST',
+            dataType: 'json',
+            success: function (response, textStatus, jqXHR) {
+                if (response !== null && typeof response === 'object') {
+                    callback(response.content);
+                } else {
+                    Notification.showError('Unexpected response was received from the server!');
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                var error = jqXHR.responseJSON;
+                Notification.showError(error.status + ' ' + error.name + ': ' + error.message);
+            }
+        });
+    };
+
+    var initSortable = function () {
+        $(settings.infoBoxContainer).sortable({
+            connectWith: settings.infoBoxContainer,
+            handle: settings.infoBoxSelector,
+            forcePlaceholderSize: true,
+            zIndex: 9999,
+            update: function (event, ui) {
+                saveOrder();
+            }
+        });
+    };
+
+    var initSwitchers = function () {
+        //Add showInfoBoxes listener
+        $('body').on('switchChange.bootstrapSwitch', 'input[name="dashboard.showInfoBoxes"]', function (event, state) {
+            if (state) {
+                loadInfoBox(null, function (content) {
+                    $(settings.infoBoxContainer).html(content);
+                    Settings.set('dashboard.showInfoBoxes', state);
+                });
+            } else {
+                $(settings.infoBoxContainer).html('');
+                Settings.set('dashboard.showInfoBoxes', state);
+            }
+
+            $('input[name^="dashboard.infoBox"]').bootstrapSwitch('disabled', !state);
+        });
+
+        //Add showInfoBoxes listener
+        $('body').on('switchChange.bootstrapSwitch', 'input[name^="dashboard.infoBox"]', function (event, state) {
+            var widgetId = $(this).data('widget-id');
+
+            if (state) {
+                loadInfoBox(widgetId, function (content) {
+                    $(settings.infoBoxContainer).append(content);
+                    saveOrder();
+                });
+            } else {
+                $(settings.infoBoxSelector + '[data-id="' + widgetId + '"]').parent().remove();
+                saveOrder();
+            }
+        });
+    };
+
+
+    return {
+        init: function () {
+            if (typeof InfoBoxSettings !== "undefined") {
+                $.extend(true, settings, InfoBoxSettings);
+            }
+
+            initSortable();
+            initSwitchers();
+        }
+    };
+}(jQuery);
+
+jQuery(document).ready(function () {
+    InfoBox.init();
+});
+var Dashboard = function ($) {
+    var settings = {
+        widgetGetUrl: '/admin/dashboard/default/get-widget',
+        dashboardSelector: '#dashboard',
+        rowSelector: '.widgets-row',
+        columnSelector: '.widgets-column',
+        widgetSelector: '.dashboard-widget',
+        animationSpeed: 500
+    };
+
+    var getOrder = function () {
+        var widgets = [];
+        $(settings.dashboardSelector).find(settings.widgetSelector).each(function () {
+            var columnId = $(this).closest(settings.columnSelector).data('column');
+            var rowId = $(this).closest(settings.rowSelector).data('row');
+            var widgetId = $(this).data('id');
+            var collapsed = $(this).hasClass('collapsed-box');
+
+            widgets.push({
+                row: rowId,
+                column: columnId,
+                widget: widgetId,
+                collapsed: collapsed
+            });
+        });
+
+        return widgets;
+    };
+
+    var saveOrder = function () {
+        Settings.set('dashboard.widgets', getOrder());
+    };
+
+    var initWidgets = function () {
+        //Make the dashboard widgets sortable Using jquery UI
+        $(".connectedSortable").sortable({
+            placeholder: "sort-highlight",
+            connectWith: ".connectedSortable",
+            handle: ".box-header, .nav-tabs",
+            forcePlaceholderSize: true,
+            zIndex: 9999,
+            update: function (event, ui) {
+                saveOrder();
+            }
+        });
+    };
+
+    var initLayoutActions = function () {
+        $('body').on('click', '.list-layouts > li > a', function () {
+            var layoutId = $(this).data('layout');
+            $('.list-layouts > li > a').removeClass('active');
+            $(this).addClass('active');
+            Settings.set('dashboard.layoutId', layoutId);
+            if ($("#dashboard").length) {
+                location.reload();
+            }
+        });
+    };
+
+    var initToggleAction = function () {
+        $('body').on('click', 'button[data-widget="collapse"], button[data-widget="remove"]', function () {
+            setTimeout(saveOrder, 1000);
+        });
+    };
+
+    var initSwitchers = function () {
+        //Add showInfoBoxes listener
+        $('body').on('switchChange.bootstrapSwitch', 'input[name^="dashboard.widget"]', function (event, state) {
+            var widgetId = $(this).data('widget-id');
+            if (state) {
+                loadWidget(widgetId, function (content) {
+                    $(settings.dashboardSelector).find(settings.rowSelector)
+                            .find(settings.columnSelector).last().append(content);
+                    saveOrder();
+                });
+            } else {
+                $(settings.widgetSelector + '[data-id="' + widgetId + '"]')
+                        .slideUp(settings.animationSpeed).remove();
+                saveOrder();
+            }
+        });
+    };
+
+    var loadWidget = function (widgetId, callback) {
+        $.ajax({
+            url: settings.widgetGetUrl,
+            data: {widgetId: widgetId},
+            type: 'POST',
+            dataType: 'json',
+            success: function (response, textStatus, jqXHR) {
+                if (response !== null && typeof response === 'object') {
+                    callback(response.content);
+                } else {
+                    Notification.showError('Unexpected response was received from the server!');
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                var error = jqXHR.responseJSON;
+                Notification.showError(error.status + ' ' + error.name + ': ' + error.message);
+            }
+        });
+    };
+
+    return {
+        init: function () {
+            if (typeof DashboardSettings !== "undefined") {
+                $.extend(true, settings, DashboardSettings);
+            }
+
+            initWidgets();
+            initSwitchers();
+            initToggleAction();
+            initLayoutActions();
+
+            //console.log(getOrder());
+
+        }
+    };
+
+}(jQuery);
+
+jQuery(document).ready(function () {
+    Dashboard.init();
+});
 /*! AdminLTE app.js
  * ================
  * Main JS application file for AdminLTE v2. This file
@@ -783,259 +1233,8 @@ function _init() {
   };
 }(jQuery));
 
-/**
- * AdminLTE Demo Menu
- * ------------------
- * You should not use this file in production.
- * This file is for demo purposes only.
- */
-(function ($, AdminLTE) {
-
-    "use strict";
-
-    /**
-     * List of all the available skins
-     *
-     * @type Array
-     */
-    var skins = [
-        "skin-blue",
-        "skin-black",
-        "skin-red",
-        "skin-yellow",
-        "skin-purple",
-        "skin-green",
-        "skin-blue-light",
-        "skin-black-light",
-        "skin-red-light",
-        "skin-yellow-light",
-        "skin-purple-light",
-        "skin-green-light"
-    ];
-
-
-
-    setup();
-
-
-
-    /**
-     * Replaces the old skin with the new skin
-     * @param String cls the new skin class
-     * @returns Boolean false to prevent link's default action
-     */
-    function change_skin(cls) {
-        $.each(skins, function (i) {
-            $("body").removeClass(skins[i]);
-        });
-
-        $("body").addClass(cls);
-        store('skin', cls);
-        return false;
-    }
-
-    /**
-     * Store a new settings in the browser
-     *
-     * @param String name Name of the setting
-     * @param String val Value of the setting
-     * @returns void
-     */
-    function store(name, val) {
-        if (typeof (Storage) !== "undefined") {
-            localStorage.setItem(name, val);
-        } else {
-            window.alert('Please use a modern browser to properly view this template!');
-        }
-    }
-
-    /**
-     * Get a prestored setting
-     *
-     * @param String name Name of of the setting
-     * @returns String The value of the setting | null
-     */
-    function get(name) {
-        if (typeof (Storage) !== "undefined") {
-            return localStorage.getItem(name);
-        } else {
-            window.alert('Please use a modern browser to properly view this template!');
-        }
-    }
-
-    /**
-     * Retrieve default settings and apply them to the template
-     *
-     * @returns void
-     */
-    function setup() {
-        var tmp = get('skin');
-        if (tmp && $.inArray(tmp, skins))
-            change_skin(tmp);
-
-        //Add the change skin listener
-        $("[data-skin]").on('click', function (e) {
-            if ($(this).hasClass('knob'))
-                return;
-            e.preventDefault();
-            change_skin($(this).data('skin'));
-        });
-
-
-    }
-})(jQuery, $.AdminLTE);
-
-$.YeeCms = function ($, AdminLTE) {
-
-    var settingGetUrl = '/admin/dashboard/default/get-setting';
-    var settingSetUrl = '/admin/dashboard/default/set-setting';
-    var infoBoxGetUrl = '/admin/dashboard/default/get-info-box';
-    var infoBoxContainer = '.info-box-container';
-    var infoBoxSelector = '.info-box';
-
-    var InfoBox = {
-        init: function () {
-
-            //Init sortable plugin
-            $(infoBoxContainer).sortable({
-                connectWith: infoBoxContainer,
-                handle: infoBoxSelector,
-                forcePlaceholderSize: true,
-                zIndex: 9999,
-                update: function (event, ui) {
-                    InfoBox.saveOrder();
-                }
-            });
-
-            //Add showInfoBoxes listener
-            $('body').on('switchChange.bootstrapSwitch', 'input[name="dashboard.showInfoBoxes"]', function (event, state) {
-                if (state) {
-                    InfoBox.loadInfoBox(null, function (content) {
-                        $(infoBoxContainer).html(content);
-                        Settings.set('dashboard.showInfoBoxes', state);
-                    });
-                } else {
-                    $(infoBoxContainer).html('');
-                    Settings.set('dashboard.showInfoBoxes', state);
-                }
-
-                $('input[name^="dashboard.infoBox"]').bootstrapSwitch('disabled', !state);
-            });
-
-            //Add showInfoBoxes listener
-            $('body').on('switchChange.bootstrapSwitch', 'input[name^="dashboard.infoBox"]', function (event, state) {
-                var widgetId = $(this).data('widget-id');
-
-                if (state) {
-                    InfoBox.loadInfoBox(widgetId, function (content) {
-                        $(infoBoxContainer).append(content);
-                        InfoBox.saveOrder();
-                    });
-                } else {
-                    $(infoBoxSelector + '[data-id="' + widgetId + '"]').parent().remove();
-                    InfoBox.saveOrder();
-                }
-            });
-        },
-
-        getOrder: function () {
-            var infoBoxes = [];
-            $(infoBoxContainer).find(infoBoxSelector).each(function () {
-                infoBoxes.push($(this).data('id'));
-            });
-            return infoBoxes;
-        },
-
-        saveOrder: function () {
-            Settings.set('dashboard.infoBoxes', InfoBox.getOrder());
-        },
-
-        loadInfoBox: function (widgetId, successCallback) {
-            $.ajax({
-                url: infoBoxGetUrl,
-                data: {widgetId: widgetId},
-                type: 'POST',
-                dataType: 'json',
-                success: function (response, textStatus, jqXHR) {
-                    if (response !== null && typeof response === 'object') {
-                        successCallback(response.content);
-                    } else {
-                        //TODO: show error
-                    }
-                },
-                error: function (jqXHR, textStatus, errorThrown) {
-                    //TODO: show error
-                }
-            });
-        }
-    };
-
-    var Settings = {
-        /**
-         * Get a prestored setting
-         *
-         * @param String name Name of of the setting
-         * @returns String The value of the setting | null
-         */
-        get: function (name) {
-            $.ajax({
-                url: settingGetUrl,
-                data: {name: name},
-                type: 'POST',
-                dataType: 'json',
-                success: function (data, textStatus, jqXHR) {
-                    if (data !== null && typeof data === 'object') {
-                        console.log(data);
-                    } else {
-
-                    }
-                },
-                error: function (jqXHR, textStatus, errorThrown) {
-
-                },
-                complete: function (jqXHR, textStatus) {
-                    //$form.trigger(events.ajaxComplete, [jqXHR, textStatus]);
-                }
-            });
-        },
-
-        /**
-         * Store a new settings in the browser
-         *
-         * @param String name Name of the setting
-         * @param String val Value of the setting
-         * @returns void
-         */
-        set: function (name, value) {
-            $.ajax({
-                url: settingSetUrl,
-                data: {name: name, value: value},
-                type: 'POST',
-                dataType: 'json',
-                success: function (data, textStatus, jqXHR) {
-                    if (data !== null && typeof data === 'object') {
-                        console.log(data);
-                    } else {
-
-                    }
-                },
-                error: function (jqXHR, textStatus, errorThrown) {
-
-                },
-                complete: function (jqXHR, textStatus) {
-                    //$form.trigger(events.ajaxComplete, [jqXHR, textStatus]);
-                }
-            });
-        }
-    };
-
-    var updateSettings = function () {
-        $.fn.bootstrapSwitch.defaults.labelWidth = 0;
-        $.fn.bootstrapSwitch.defaults.onColor = "success";
-
-        //InfoBox.saveOrder();
-        //Settings.get('layoutId');
-    };
+var Application = function ($) {
+    var settings = {};
 
     var initComponents = function () {
         //iCheck for checkbox and radio inputs
@@ -1051,51 +1250,25 @@ $.YeeCms = function ($, AdminLTE) {
             }
         });
 
-        //Make the dashboard widgets sortable Using jquery UI
-        $(".connectedSortable").sortable({
-            placeholder: "sort-highlight",
-            connectWith: ".connectedSortable",
-            handle: ".box-header, .nav-tabs",
-            forcePlaceholderSize: true,
-            zIndex: 9999
-        });
-
         //Init Bootstrap Switch
         $("input.switch").bootstrapSwitch();
     };
 
-    var initActions = function () {
-        $('body').on('click', '.list-layouts > li > a', function () {
-            var layoutId = $(this).data('layout');
-            $('.list-layouts > li > a').removeClass('active');
-            $(this).addClass('active');
-            Settings.set('dashboard.layoutId', layoutId);
-            if($("#dashboard").length){
-                location.reload();
-            }
-        });
-    };
-
     return {
-
-        //main function to initiate the application
         init: function () {
-            InfoBox.init();
-            updateSettings();
-            initComponents();
-            initActions();
+            if (typeof ApplicationSettings !== "undefined") {
+                $.extend(true, settings, ApplicationSettings);
+            }
 
-//            // set layout style from cookie
-//            if (typeof Cookies !== "undefined" && Cookies.get('layout-style-option') === 'rounded') {
-//                setThemeStyle(Cookies.get('layout-style-option'));
-//                $('.theme-panel .layout-style-option').val(Cookies.get('layout-style-option'));
-//            }
+            $.fn.bootstrapSwitch.defaults.labelWidth = 0;
+            $.fn.bootstrapSwitch.defaults.onColor = "success";
+
+            initComponents();
         }
     };
 
-}(jQuery, $.AdminLTE);
-
+}(jQuery);
 
 jQuery(document).ready(function () {
-    $.YeeCms.init();
+    Application.init();
 });

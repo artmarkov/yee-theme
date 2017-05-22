@@ -32,17 +32,16 @@ module.exports = function (grunt) {
             adminlte: {
                 src: [
                     'src/js/config.js',
+                    'src/js/notification.js',
+                    'src/js/settings.js',
+                    'src/js/modal.js',
+                    'src/js/info-box.js',
+                    'src/js/dashboard.js',
                     'vendor/almasaeed2010/adminlte/dist/js/app.js',
-                    'src/js/app.js'
+                    'src/js/application.js'
                 ],
-                dest: 'dist/js/app.js'
+                dest: 'dist/js/application.js'
             },
-            admin: {
-                src: [
-                    'src/js/admin.js'
-                ],
-                dest: 'dist/js/admin.js'
-            }
         },
         less: {
             development: {
@@ -71,9 +70,8 @@ module.exports = function (grunt) {
             },
             javascript: {
                 files: {
-                    "dist/js/admin.min.js": ['dist/js/admin.js'],
                     "dist/js/bootstrap.min.js": ['dist/js/bootstrap.js'],
-                    "dist/js/app.min.js": ['dist/js/app.js']
+                    "dist/js/application.min.js": ['dist/js/application.js']
                 }
             }
         },

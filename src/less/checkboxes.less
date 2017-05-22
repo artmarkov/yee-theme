@@ -1,139 +1,150 @@
 @checkbox-size: 16px;
-@checkbox-check-width: 5px;
-@checkbox-check-height: 10px;
-@checkbox-check-left: 5px;
-@checkbox-check-top: 1px;
 @checkbox-border-radius: 0px;
-@checkbox-background: #fff;
-@checkbox-color: @gray-dark;
-@checkbox-disabled-color: lighten(@checkbox-color, 40%);
 
-.icheckbox,
-.iradio {   
-    display: inline-block;
-    *display: inline;
-    vertical-align: middle;
-    margin: 0;
-    padding: 0;
-    background: @checkbox-background;
-    width: @checkbox-size;
-    height: @checkbox-size;
-    border-width: 1px;
+.tick-variant (@color: #eee) {
+    color: @color;
+    left: 6px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
     border-style: solid;
-    cursor: pointer;
-
-    &.disabled {
-        cursor: not-allowed;
-    }
-
-    &.checked:after {
-        content: '';
-        position: absolute;
-    }
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg); 
 }
 
-.icheckbox {
-    border-radius: @checkbox-border-radius;
-
-    &.checked:after {
-        left: @checkbox-check-left;
-        top: @checkbox-check-top;
-        width: @checkbox-check-width;
-        height: @checkbox-check-height;
-        border-style: solid;
-        border-width: 0 2px 2px 0;
-        transform: rotate(45deg); 
-    }
-}
-.iradio {
-    border-radius: 50%;
-
-    &.checked:after {
-        left: 3px;
-        top: 3px;
-        width: @checkbox-size - 8px;
-        height: @checkbox-size - 8px;
-        border-radius: 50%;
-    }
-}
-
-.icheckbox,
-.iradio,
-.icheckbox.checked:after {
-    border-color: @checkbox-color;
-}
-
-.icheckbox.disabled,
-.iradio.disabled,
-.icheckbox.disabled.checked:after {
-    border-color: @checkbox-disabled-color;
-}
-
-.iradio.checked:after {
-    background: @checkbox-color;
-}
-
-.iradio.disabled.checked:after {
-    background: @checkbox-disabled-color;
-}
-
-
-.checkbox-variant(@parent, @background, @border-color, @color, @disabled-background, @disabled-border-color, @disabled-color) {
-    .@{parent} {
-        &.icheckbox {
-            background: @background;
-        }
-        &.icheckbox {
-            border-color: @border-color;
-        }
-        &.icheckbox.checked:after {
+.checkbox-variant(@parent, @color) {
+    .@{parent} input[type="checkbox"]:checked + label,
+        .@{parent} input[type="radio"]:checked + label {
+        &::before {
             border-color: @color;
         }
-        &.icheckbox.disabled {
-            background: @disabled-background;
-        }
-        &.icheckbox.disabled {
-            border-color: @disabled-color;
-        }
-        &.icheckbox.disabled.checked:after {
-            border-color: @disabled-border-color;
+        &::after {
+            color: #fff;
+            .tick-variant(@color);
         }
     }
 }
 
-.radio-variant(@parent, @background, @border-color, @color, @disabled-background, @disabled-border-color, @disabled-color) {
-    .@{parent} {
-        &.iradio {
-            border-color: @border-color;
-            background: @background;
+.radio-variant(@parent, @color) {
+    .@{parent} input[type="radio"]{
+        & + label{
+            &::after{
+                background-color: @color;
+            }
         }
-        &.iradio.checked:after {
-            background: @color;
-        }
-        &.iradio.disabled {
-            border-color: @disabled-color;
-            background: @disabled-background;
-        }
-        &.iradio.disabled.checked:after {
-            background: @disabled-color;
+        &:checked + label{
+            &::before {
+                border-color: @color;
+            }
+            &::after{
+                .tick-variant(@color);
+            }
         }
     }
 }
 
-.icheck-variant(@parent, @background, @border-color, @color, @disabled-background, @disabled-border-color, @disabled-color) {
-    .checkbox-variant(~"icheckbox-@{parent}", @background, @border-color, @color, @disabled-background, @disabled-border-color, @disabled-color);
-    .radio-variant(~"iradio-@{parent}", @background, @border-color, @color, @disabled-background, @disabled-border-color, @disabled-color);
+.checkbox, .radio {
+    padding-left: @checkbox-size !important;
+    margin: 0 !important;
+    height: @checkbox-size;
+    width: @checkbox-size;
+
+    label {
+        display: inline-block;
+        vertical-align: middle;
+        position: relative;
+        padding-left: 5px;
+
+        &::after, &::before {
+            content: " ";
+            display: inline-block;
+            position: absolute;
+            margin-left: -@checkbox-size;
+        }
+
+        &::before {
+            width: @checkbox-size;
+            height: @checkbox-size;
+            left: 0;
+            border: 1px solid darken(@input-border, 20%);
+            background-color: #fff;
+        }
+    }
+
+    input[type="checkbox"],
+    input[type="radio"] {
+        opacity: 0;
+        z-index: 1;
+        margin: 0 0 0 -@checkbox-size;
+        padding: 0;
+        width: @checkbox-size;
+        height: @checkbox-size;
+
+        &:disabled + label {
+            opacity: 0.65;
+            &::before {
+                background-color: @input-bg-disabled;
+                cursor: not-allowed;
+            }
+        }
+    }
 }
 
-.icheck-variant(primary, @checkbox-background, @brand-primary, @brand-primary, @checkbox-background, lighten(@brand-primary, 40%), lighten(@brand-primary, 40%));
-.icheck-variant(warning, @checkbox-background, @brand-warning, @brand-warning, @checkbox-background, lighten(@brand-warning, 15%), lighten(@brand-warning, 15%));
-.icheck-variant(success, @checkbox-background, @brand-success, @brand-success, @checkbox-background, lighten(@brand-success, 20%), lighten(@brand-success, 20%));
-.icheck-variant(danger, @checkbox-background, @brand-danger, @brand-danger, @checkbox-background, lighten(@brand-danger, 20%), lighten(@brand-danger, 20%));
-.icheck-variant(info, @checkbox-background, @brand-info, @brand-info, @checkbox-background, lighten(@brand-info, 20%), lighten(@brand-info, 20%));
+.checkbox {
+    label {
+        &::before {
+            border-radius: @checkbox-border-radius;
+        }
+    }
 
-.icheck-variant(solid-default, @checkbox-color, darken(@checkbox-color, 20%), #fff, lighten(@checkbox-color, 40%), #fff, lighten(@checkbox-color, 20%));
-.icheck-variant(solid-primary, @brand-primary, darken(@brand-primary, 20%), #fff, lighten(@brand-primary, 40%), #fff, lighten(@brand-primary, 20%));
-.icheck-variant(solid-warning, @brand-warning, darken(@brand-warning, 20%), #fff, lighten(@brand-warning, 15%), #fff, lighten(@brand-warning, 7%));
-.icheck-variant(solid-success, @brand-success, darken(@brand-success, 20%), #fff, lighten(@brand-success, 20%), #fff, lighten(@brand-success, 10%));
-.icheck-variant(solid-danger, @brand-danger, darken(@brand-danger, 20%), #fff, lighten(@brand-danger, 20%), #fff, lighten(@brand-danger, 10%));
-.icheck-variant(solid-info, @brand-info, darken(@brand-info, 20%), #fff, lighten(@brand-info, 20%), #fff, lighten(@brand-info, 10%));
+    input[type="checkbox"], input[type="radio"] {
+        &:checked + label::after{
+            .tick-variant(@input-color);
+        }
+    }
+
+    &.checkbox-circle label {
+        &::before, &::after {
+            border-radius: 50%;
+        }
+    }
+
+    &.checkbox-inline {
+        margin-top: 0;
+    }
+}
+
+.radio{
+    label{
+        &::before {
+            border-radius: 50%;
+        }
+        &::after {
+            border-radius: 50%;
+            .tick-variant(@input-color);
+            .scale(0, 0);
+        }
+    }
+
+    input[type="radio"] {
+        &:checked + label::after {
+            .scale(1, 1);
+        }
+    }
+
+    &.radio-inline {
+        margin-top: 0;
+    }
+}
+
+.checkbox-variant(checkbox-primary, @brand-primary);
+.checkbox-variant(checkbox-danger, @brand-danger);
+.checkbox-variant(checkbox-info, @brand-info);
+.checkbox-variant(checkbox-warning, @brand-warning);
+.checkbox-variant(checkbox-success, @brand-success);
+
+.radio-variant(radio-primary, @brand-primary);
+.radio-variant(radio-danger, @brand-danger);
+.radio-variant(radio-info, @brand-info);
+.radio-variant(radio-warning, @brand-warning);
+.radio-variant(radio-success, @brand-success);
