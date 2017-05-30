@@ -185,7 +185,7 @@ var Modal = function ($) {
             title = "Confirmation";
         }
 
-        return '<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="confirm-modal-label">'
+        return '<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="confirm-modal-label">'
                 + '<div class="modal-dialog" role="document">'
                 + '<div class="modal-content">'
                 + '<div class="modal-header">'
