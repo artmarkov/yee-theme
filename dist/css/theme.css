@@ -5800,8 +5800,6 @@ button.close {
 .radio {
   padding-left: 16px !important;
   margin: 0 !important;
-  height: 16px;
-  width: 16px;
 }
 .checkbox label,
 .radio label {
@@ -5865,10 +5863,6 @@ button.close {
   border-width: 0 2px 2px 0;
   transform: rotate(45deg);
 }
-.checkbox.checkbox-circle label::before,
-.checkbox.checkbox-circle label::after {
-  border-radius: 50%;
-}
 .checkbox.checkbox-inline {
   margin-top: 0;
 }
@@ -5877,14 +5871,11 @@ button.close {
 }
 .radio label::after {
   border-radius: 50%;
-  color: #444444;
-  left: 6px;
-  top: 2px;
-  width: 5px;
-  height: 10px;
-  border-style: solid;
-  border-width: 0 2px 2px 0;
-  transform: rotate(45deg);
+  background: #444444;
+  left: 4px;
+  top: 4px;
+  width: 8px;
+  height: 8px;
   -webkit-transform: scale(0, 0);
   -ms-transform: scale(0, 0);
   -o-transform: scale(0, 0);
@@ -5986,14 +5977,11 @@ button.close {
   border-color: #36517b;
 }
 .radio-primary input[type="radio"]:checked + label::after {
-  color: #36517b;
-  left: 6px;
-  top: 2px;
-  width: 5px;
-  height: 10px;
-  border-style: solid;
-  border-width: 0 2px 2px 0;
-  transform: rotate(45deg);
+  background: #36517b;
+  left: 4px;
+  top: 4px;
+  width: 8px;
+  height: 8px;
 }
 .radio-danger input[type="radio"] + label::after {
   background-color: #d9534f;
@@ -6002,14 +5990,11 @@ button.close {
   border-color: #d9534f;
 }
 .radio-danger input[type="radio"]:checked + label::after {
-  color: #d9534f;
-  left: 6px;
-  top: 2px;
-  width: 5px;
-  height: 10px;
-  border-style: solid;
-  border-width: 0 2px 2px 0;
-  transform: rotate(45deg);
+  background: #d9534f;
+  left: 4px;
+  top: 4px;
+  width: 8px;
+  height: 8px;
 }
 .radio-info input[type="radio"] + label::after {
   background-color: #5bc0de;
@@ -6018,14 +6003,11 @@ button.close {
   border-color: #5bc0de;
 }
 .radio-info input[type="radio"]:checked + label::after {
-  color: #5bc0de;
-  left: 6px;
-  top: 2px;
-  width: 5px;
-  height: 10px;
-  border-style: solid;
-  border-width: 0 2px 2px 0;
-  transform: rotate(45deg);
+  background: #5bc0de;
+  left: 4px;
+  top: 4px;
+  width: 8px;
+  height: 8px;
 }
 .radio-warning input[type="radio"] + label::after {
   background-color: #f0ad4e;
@@ -6034,14 +6016,11 @@ button.close {
   border-color: #f0ad4e;
 }
 .radio-warning input[type="radio"]:checked + label::after {
-  color: #f0ad4e;
-  left: 6px;
-  top: 2px;
-  width: 5px;
-  height: 10px;
-  border-style: solid;
-  border-width: 0 2px 2px 0;
-  transform: rotate(45deg);
+  background: #f0ad4e;
+  left: 4px;
+  top: 4px;
+  width: 8px;
+  height: 8px;
 }
 .radio-success input[type="radio"] + label::after {
   background-color: #5cb85c;
@@ -6050,14 +6029,11 @@ button.close {
   border-color: #5cb85c;
 }
 .radio-success input[type="radio"]:checked + label::after {
-  color: #5cb85c;
-  left: 6px;
-  top: 2px;
-  width: 5px;
-  height: 10px;
-  border-style: solid;
-  border-width: 0 2px 2px 0;
-  transform: rotate(45deg);
+  background: #5cb85c;
+  left: 4px;
+  top: 4px;
+  width: 8px;
+  height: 8px;
 }
 /*
  * Core: General Layout Style
