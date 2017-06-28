@@ -22,6 +22,7 @@ var Notification = function ($) {
                 icon = '<i class="icon fa fa-check"></i>';
                 notificationClass = 'callout callout-success';
                 break;
+            case 'error':
             case 'danger':
                 title = 'Error!';
                 icon = '<i class="icon fa fa-ban"></i>';
@@ -38,6 +39,9 @@ var Notification = function ($) {
                 notificationClass = 'callout callout-warning';
                 break;
             case 'primary':
+                notificationClass = 'callout callout-primary';
+                break;
+            case 'notification':
                 notificationClass = 'callout callout-primary';
                 break;
             default:
@@ -63,6 +67,9 @@ var Notification = function ($) {
                 $.extend(true, settings, NotificationSettings);
             }
         },
+        show: function (type, message) {
+            show(type, message);
+        },
         showSuccess: function (message) {
             show('success', message);
         },
@@ -77,6 +84,9 @@ var Notification = function ($) {
         },
         showPrimary: function (message, title, icon) {
             show('primary', message, title, icon);
+        },
+        showNotification: function (message, title, icon) {
+            show('notification', message, title, icon);
         },
         showDefault: function (message, title, icon) {
             show('default', message, title, icon);
