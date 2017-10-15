@@ -37,7 +37,7 @@ module.exports = function (grunt) {
                     'src/js/modal.js',
                     'src/js/info-box.js',
                     'src/js/dashboard.js',
-                    'vendor/almasaeed2010/adminlte/dist/js/app.js',
+                    'vendor/almasaeed2010/adminlte/dist/js/adminlte.js',
                     'vendor/almasaeed2010/adminlte/plugins/select2/select2.js',
                     'src/js/application.js'
                 ],

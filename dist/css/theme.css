@@ -1,9 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Ubuntu:400,700&subset=cyrillic,cyrillic-ext,latin-ext');
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
 @import url('https://fonts.googleapis.com/css?family=Lato');
-html {
-  overflow-y: scroll;
-}
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 html {
   font-family: sans-serif;
@@ -2648,6 +2645,9 @@ input[type="submit"].btn-block,
 input[type="reset"].btn-block,
 input[type="button"].btn-block {
   width: 100%;
+}
+select.form-control {
+  padding: 0 10px;
 }
 .fade {
   opacity: 0;
@@ -5836,8 +5836,8 @@ button.close {
   z-index: 1;
   margin: 0 0 0 -16px;
   padding: 0;
-  width: 16px;
-  height: 16px;
+  width: 100%;
+  height: 100%;
 }
 .checkbox input[type="checkbox"]:disabled + label,
 .radio input[type="checkbox"]:disabled + label,
@@ -6717,6 +6717,12 @@ a:focus {
   .control-sidebar-open .main-footer {
     margin-right: 220px;
   }
+}
+.fixed .control-sidebar {
+  position: fixed;
+  height: 100%;
+  overflow-y: auto;
+  padding-bottom: 50px;
 }
 .nav-tabs.control-sidebar-tabs > li:first-of-type > a,
 .nav-tabs.control-sidebar-tabs > li:first-of-type > a:hover,
@@ -8394,6 +8400,9 @@ a:focus {
   border-top: 3px solid transparent;
   margin-bottom: -2px;
   margin-right: 5px;
+}
+.nav-tabs-custom > .nav-tabs > li.disabled > a {
+  color: #777;
 }
 .nav-tabs-custom > .nav-tabs > li > a {
   color: #444;

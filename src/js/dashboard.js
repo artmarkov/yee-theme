@@ -1,4 +1,7 @@
 var Dashboard = function ($) {
+    
+    var saveWidgetsTimeout; 
+    
     var settings = {
         widgetGetUrl: '/admin/dashboard/default/get-widget',
         dashboardSelector: '#dashboard',
@@ -58,8 +61,9 @@ var Dashboard = function ($) {
     };
 
     var initToggleAction = function () {
-        $('body').on('click', 'button[data-widget="collapse"], button[data-widget="remove"]', function () {
-            setTimeout(saveOrder, 1000);
+        $('body').on('expanded.boxwidget collapsed.boxwidget removed.boxwidget', '.dashboard-widget', function (e) {
+            clearTimeout(saveWidgetsTimeout);
+            saveWidgetsTimeout = setTimeout(saveOrder, 100);
         });
     };
 

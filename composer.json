@@ -23,7 +23,7 @@
         }
     },
     "require-dev": {
-        "almasaeed2010/AdminLTE": "~2.3.0",
+        "almasaeed2010/AdminLTE": "~2.4.0",
         "twbs/bootstrap": "~3.3.7",
         "bower-asset/bootstrap-switch": "~3.3.0"
     },
