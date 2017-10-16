@@ -9,33 +9,16 @@ use yii\web\AssetBundle;
  * 
  * @package yeesoft\theme
  */
-class AdminThemeAsset extends AssetBundle
-{
+class AdminThemeAsset extends AssetBundle {
 
-    public function init()
-    {
-        $this->sourcePath = '@yeesoft/yee-theme/dist';
-
-        $this->js = [
-            //'js/bootstrap.min.js',
-            //'js/bootstrap-switch.min.js',
-            'js/application.min.js',
-            //'js/admin.min.js',
-        ];
-
-        $this->css = [
-                //'css/bootstrap-switch.min.css',
-                //'css/bootstrap.css'
-        ];
-
-        $this->depends = [
-            'yii\web\YiiAsset',
-            'yii\bootstrap\BootstrapAsset',
-            'yii\bootstrap\BootstrapPluginAsset',
-            'yii\jui\JuiAsset',
-            //'yeesoft\theme\assets\CheckboxAsset',
-        ];
-        
-    }
+    public $sourcePath = '@yeesoft/yee-theme/dist/theme';
+    public $js = ['js/application.min.js'];
+    public $depends = [
+        'yeesoft\theme\assets\CheckboxAsset',
+        'yii\web\YiiAsset',
+        'yii\bootstrap\BootstrapAsset',
+        'yii\bootstrap\BootstrapPluginAsset',
+        'yii\jui\JuiAsset',
+    ];
 
 }

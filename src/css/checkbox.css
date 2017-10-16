@@ -1,0 +1,76 @@
+label > .bootstrap-checkbox, label > .bootstrap-radio {
+    float: left;
+    margin-right: 5px;
+}
+
+.bootstrap-checkbox, .bootstrap-radio {
+    margin: 0;
+    position: relative;
+    font-weight: normal;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.bootstrap-checkbox input[type="checkbox"],
+.bootstrap-radio input[type="radio"]
+{
+    opacity: 0;
+    margin: 0;
+    float: left;
+    height: 16px;
+    width: 16px;
+    position: relative;
+    z-index: 100;
+    cursor: pointer;
+}
+
+.bootstrap-checkbox input[type="checkbox"] + span::before, 
+.bootstrap-radio input[type="radio"] + span::before 
+{
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 16px;
+    height: 16px;
+    border: 1px solid #aaa;
+    background-color: #fff;
+}
+
+.bootstrap-radio input[type="radio"] + span::before {
+    border-radius: 50%;
+}
+
+.bootstrap-checkbox input[type="checkbox"]:checked + span::after,
+.bootstrap-radio input[type="radio"]:checked + span::after 
+{
+    content: '';
+    position: absolute;
+    color: #444;
+}
+
+.bootstrap-checkbox input[type="checkbox"]:checked + span::after {
+    left: 6px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
+    border-style: solid;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.bootstrap-radio input[type="radio"]:checked + span::after {
+    left: 4px;
+    top: 4px;
+    width: 8px;
+    height: 8px;
+    background: #777;
+    border-radius: 50%;
+}
+
+.bootstrap-checkbox input[type="checkbox"]:disabled + span,
+.bootstrap-radio input[type="radio"]:disabled + span
+{
+    opacity: 0.65;
+    background-color: #dddddd;
+    cursor: not-allowed;
+}

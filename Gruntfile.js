@@ -27,7 +27,7 @@ module.exports = function (grunt) {
                     'vendor/bower-asset/bootstrap-switch/dist/js/bootstrap-switch.js',
                     'vendor/bower-asset/icheck/icheck.js',
                 ],
-                dest: 'dist/js/bootstrap.js'
+                dest: 'dist/theme/js/bootstrap.js'
             },
             adminlte: {
                 src: [
@@ -41,7 +41,7 @@ module.exports = function (grunt) {
                     'vendor/almasaeed2010/adminlte/plugins/select2/select2.js',
                     'src/js/application.js'
                 ],
-                dest: 'dist/js/application.js'
+                dest: 'dist/theme/js/application.js'
             },
         },
         less: {
@@ -50,8 +50,7 @@ module.exports = function (grunt) {
                     compress: false
                 },
                 files: {
-                    //"dist/css/bootstrap.css": "src/less/bootstrap.less",
-                    "dist/css/theme.css": "src/less/theme.less"
+                    "dist/theme/css/theme.css": "src/less/theme.less"
                 }
             },
             production: {
@@ -59,8 +58,7 @@ module.exports = function (grunt) {
                     compress: true
                 },
                 files: {
-                    //"dist/css/bootstrap.min.css": "src/less/bootstrap.less",
-                    "dist/css/theme.min.css": "src/less/theme.less",
+                    "dist/theme/css/theme.min.css": "src/less/theme.less",
                 }
             }
         },
@@ -71,30 +69,52 @@ module.exports = function (grunt) {
             },
             javascript: {
                 files: {
-                    "dist/js/bootstrap.min.js": ['dist/js/bootstrap.js'],
-                    "dist/js/application.min.js": ['dist/js/application.js']
+                    "dist/theme/js/bootstrap.min.js": ['dist/theme/js/bootstrap.js'],
+                    "dist/theme/js/application.min.js": ['dist/theme/js/application.js']
+                }
+            },
+            checkbox: {
+                files: {
+                    "dist/checkbox/js/checkbox.min.js": ['src/js/checkbox.js']
                 }
             }
         },
-//        copy: {
-//            bootstrapSwitchCss: {
-//                files: [
-//                    {
-//                        expand: true,
-//                        cwd: 'vendor/bower-asset/bootstrap-switch/dist/css/bootstrap3/',
-//                        src: ['**'],
-//                        dest: 'dist/css/'
-//                    },
-//                ],
-//            },
-//        },
+        cssmin: {
+            target: {
+                files: {
+                    'dist/checkbox/css/checkbox.min.css': ['src/css/checkbox.css']
+                }
+            }
+        },
+        copy: {
+            checkboxCss: {
+                files: [
+                    {
+                        expand: true,
+                        cwd: 'src/css/',
+                        src: ['checkbox.css'],
+                        dest: 'dist/checkbox/css/'
+                    },
+                ],
+            },
+            checkboxJs: {
+                files: [
+                    {
+                        expand: true,
+                        cwd: 'src/js/',
+                        src: ['checkbox.js'],
+                        dest: 'dist/checkbox/js/'
+                    },
+                ],
+            },
+        },
         image: {
             dynamic: {
                 files: [{
                         expand: true,
                         cwd: 'src/img/',
                         src: ['**/*.{png,jpg,gif,svg,jpeg}'],
-                        dest: 'dist/img/'
+                        dest: 'dist/theme/img/'
                     }]
             }
         }
@@ -105,9 +125,10 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-image');
 
-    grunt.registerTask('run', ['clean', 'concat', 'less', 'uglify', 'image']);//'copy', 
+    grunt.registerTask('run', ['clean', 'concat', 'less', 'uglify', 'cssmin', 'copy', 'image']);
     grunt.registerTask('default', ['watch']);
 };
