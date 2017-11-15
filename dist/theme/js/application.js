@@ -1618,6 +1618,14 @@ var Application = function ($) {
                 });
             }
         });
+        
+        //Init checkboxes and radios on pjax:end
+        if (typeof initCheckboxAndRadioInput === "function") { 
+            $('[data-pjax-container]').on('pjax:end', function() { 
+                initCheckboxAndRadioInput('input[type="checkbox"]', 'bootstrap-checkbox');
+                initCheckboxAndRadioInput('input[type="radio"]', 'bootstrap-radio'); 
+            });
+        }
 
         //Init Bootstrap Switch
         $("input.switch").bootstrapSwitch();

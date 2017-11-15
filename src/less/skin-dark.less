@@ -2,7 +2,7 @@
     *, *:active, *:focus, *:active:focus {
         outline: 0;
         outline-color: transparent;
-        
+
     }
     //Navbar
     .main-header {
@@ -48,6 +48,18 @@
     .small-box {
         h3 {
             color: #fff;
+        }
+    }
+
+    .nav-stacked li {
+        .badge {
+            color: @brand-primary;
+            background-color: transparent;
+        }
+
+        &.active .badge {
+            color: #fff;
+            background-color: @brand-primary;
         }
     }
 

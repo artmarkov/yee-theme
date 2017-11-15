@@ -9271,6 +9271,14 @@ table.text-center th {
 .skin-dark .small-box h3 {
   color: #fff;
 }
+.skin-dark .nav-stacked li .badge {
+  color: #36517b;
+  background-color: transparent;
+}
+.skin-dark .nav-stacked li.active .badge {
+  color: #fff;
+  background-color: #36517b;
+}
 .skin-dark .wrapper,
 .skin-dark .main-sidebar,
 .skin-dark .left-side {
