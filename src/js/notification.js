@@ -6,6 +6,13 @@ var Notification = function ($) {
         defaultTitle: 'Notification!',
         notificationContainer: '.notification-container'
     };
+    
+    var messages = {
+        success: 'Success!',
+        error: 'Error!',
+        info: 'Info!',
+        warning: 'Warning!',
+    };
 
     var getNotification = function (type, message, title, icon) {
         var notificationClass;
@@ -18,23 +25,23 @@ var Notification = function ($) {
 
         switch (type) {
             case 'success':
-                title = 'Success!';
+                title = messages.success;
                 icon = '<i class="icon fa fa-check"></i>';
                 notificationClass = 'callout callout-success';
                 break;
             case 'error':
             case 'danger':
-                title = 'Error!';
+                title = messages.error;
                 icon = '<i class="icon fa fa-ban"></i>';
                 notificationClass = 'callout callout-danger';
                 break;
             case 'info':
-                title = 'Info!';
+                title = messages.info;
                 icon = '<i class="icon fa fa-info"></i>';
                 notificationClass = 'callout callout-info';
                 break;
             case 'warning':
-                title = 'Warning!';
+                title = messages.warning;
                 icon = '<i class="icon fa fa-warning"></i>';
                 notificationClass = 'callout callout-warning';
                 break;
