@@ -9157,6 +9157,7 @@ table.text-center th {
 }
 .grid-view .summary {
   float: right;
+  margin-top: 5px;
 }
 .grid-view .pagination {
   margin: 10px 0;
@@ -9182,12 +9183,16 @@ table.text-center th {
   margin-right: 10px;
 }
 .grid-view .grid-quick-filters {
+  float: left;
+  margin-top: 5px;
   text-transform: uppercase;
-  margin-bottom: 10px;
 }
 .grid-view .grid-filter-cleaner {
   display: none;
   margin: 0 10px;
+}
+.grid-view .grid-additional-actions {
+  padding: 0 5px;
 }
 .grid-view .quick-actions,
 .grid-view .grid-quick-filters {
